@@ -591,9 +591,9 @@ class ListSerializer(BaseSerializer):
         super(ListSerializer, self).__init__(*args, **kwargs)
         self.child.bind(field_name='', parent=self)
 
-    def bind(self, field_name, parent):
-        super(ListSerializer, self).bind(field_name, parent)
-        self.partial = self.parent.partial
+    # def bind(self, field_name, parent):
+    #     super(ListSerializer, self).bind(field_name, parent)
+    #     self.partial = self.parent.partial
 
     def get_initial(self):
         if hasattr(self, 'initial_data'):
@@ -646,8 +646,8 @@ class ListSerializer(BaseSerializer):
             }, code='not_a_list')
 
         if not self.allow_empty and len(data) == 0:
-            if self.parent and self.partial:
-                raise SkipField()
+            # if self.parent and self.partial:
+            #     raise SkipField()
 
             message = self.error_messages['empty']
             raise ValidationError({
